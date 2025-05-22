@@ -1,0 +1,95 @@
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+    background-image: url(img/Pollos.png);
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    z-index: 1;
+}
+
+#start-screen {
+    text-shadow: 3px 3px 3px black;
+    background-color: #3394d4;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.target {
+    position: absolute;
+    cursor: pointer;
+    width: 55px;
+    height: 60px;
+    background: url('img/Bomba.png') no-repeat center center;
+}
+
+.target:hover {
+    opacity: 0.85;
+}
+
+.failure-image {
+    position: absolute;
+    pointer-events: none;
+    width: 60px;
+    height: 60px;
+    background-color: red;
+    opacity: 1;
+    animation: fadeOut 0.5s ease-out forwards;
+    background: url('img/Explosion.png') no-repeat center center;
+}
+
+@keyframes fadeOut {
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+#score, #life {
+    position: fixed;
+    font-size: 30px;
+    font-weight: bolder;
+    color: white;
+    text-shadow: 3px 3px 3px black;
+    font-weight: bold;
+
+}
+
+#score {
+    top: 10px;
+    left: 10px;
+}
+
+#life {
+    top: 10px;
+    right: 10px;
+}
+
+#start-screen h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+#start-screen p {
+    font-size: 24px;
+    margin-top: 0;
+}
+
+.game-over-modal {
+    background-color: #3394d4;
+    padding: 20px;
+    border-radius: 10px;
+
+}
