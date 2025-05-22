@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Memory Game</title>
+  <script src="app.js" charset="utf-8"></script>
+  <style>
+     body {
+      text-align: center;
+      background-image: url(img/pokemons.jpg);
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column; /* Añadido para centrar verticalmente */
+    }
+
+    #playButton, #formContainer, #playerInfo, #result {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #playButton {
+      font-size: 24px;
+      padding: 15px 30px;
+      background-color: #ffcc00; /* Color de fondo retro */
+      border: 2px solid #cc9900; /* Borde retro */
+      color: #330000; /* Texto retro */
+      cursor: pointer;
+      border-radius: 10px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    #playButton:hover {
+      background-color: #cc9900; /* Cambio de color al pasar el ratón */
+      color: #ffffff; /* Cambio de color al pasar el ratón */
+    }
+
+    #playerInfo, #result {
+      margin-top: 10px;
+    }
+
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      width: 400px;
+      height: 300px;
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    img {
+      width: 120px;
+      height: 120px;
+      padding: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="playerInfo"></div>
+  <h3 id="result" style="display: none;">Score: <span id="scoreValue"></span></h3>
+
+  <div id="playButton">¡Juguemos!</div>
+  
+  <div id="formContainer" style="display: none;">
+    <form id="playerForm">
+      <label for="playerName">Nombre:</label>
+      <input type="text" id="playerName" name="playerName" required>
+      <br>
+      <input type="checkbox" id="acceptTerms" name="acceptTerms" required>
+      <label for="acceptTerms">Acepto los términos de uso</label>
+      <br>
+      <button type="submit">Aceptar</button>
+    </form>
+  </div>
+
+  <div class="grid"></div>
+
+  <script src="app.js" charset="utf-8"></script>
+</body>
+
+</html>
