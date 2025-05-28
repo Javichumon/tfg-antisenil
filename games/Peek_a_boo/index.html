@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Juego de Reacción</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="green"> <!-- Imagen verde como fondo inicial -->
+
+  <!-- Menú inicial -->
+  <div id="menu" class="center">
+  <div id="instructions" class="instruction-box">
+    Clica en la pantalla cuando veas cambiar la imagen
+  </div>
+  <div class="button-row">
+    <button id="startBtn" class="btn">Empezar</button>
+    <button id="menuBtn" class="btn">Volver al menú</button>
+  </div>
+</div>
+
+
+  <!-- Área de juego -->
+  <div id="gameArea" style="display: none;">
+    <div id="messageContainer" class="message-box" style="display: none;"></div>
+
+    <div id="timer" style="display: none;"></div>
+
+    <div id="restartButtons" style="display: none; text-align: center; margin-top: 20px;">
+      <button id="retryBtn" class="btn">Reintentar</button>
+      <button id="menuBtn2" class="btn">Volver al menú principal</button>
+    </div>
+  </div>
+
+  <!-- Mejor puntuación -->
+  <div id="bestScore" class="scoreboard">
+    Mejor puntuación: -- ms
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
