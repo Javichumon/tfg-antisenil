@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Typing Speed Game</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="menu">
+    <h1>Escribe la frase lo más rápido posible</h1>
+    <button onclick="startGame()">Empezar</button>
+    <button onclick="location.href='../../GodIndex.html'">Volver al menú</button>
+  </div>
+
+  <div id="game" class="hidden">
+    <p id="phraseDisplay"></p>
+    <input type="text" id="inputBox" oninput="checkInput()" autocomplete="off" />
+  </div>
+
+  <div id="result" class="hidden">
+    <p id="wpmResult"></p>
+    <button onclick="startGame()">Reintentar</button>
+    <button onclick="location.href='../../GodIndex.html'">Volver al menú</button>
+  </div>
+
+  <script src="frases.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
