@@ -45,7 +45,7 @@
 
         if (res.ok) {
           sessionStorage.setItem('user', JSON.stringify(data.user));
-          window.location.href = 'GodIndex.html'; // o index.html
+          window.location.href = 'GodIndex.html'; 
         } else {
           errorDiv.textContent = data.message || 'Error al iniciar sesión';
         }
