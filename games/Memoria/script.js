@@ -83,3 +83,6 @@ function comprobarFin() {
     }
   }
 }
+saveScore('memoria', errores); // o segundos, o tiempo, según juego
+
+renderArcadeTop5('topScores', 'memoria', 'asc'); // o 'desc'

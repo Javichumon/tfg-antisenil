@@ -58,5 +58,59 @@ async function cerrarSesion() {
   location.reload();
 }
 
-// Ejecutar si la página tiene menú
+async function saveScore(gameId, score) {
+  console.log("Intentando guardar score:", gameId, score);
+
+  const res = await fetch('http://localhost:3000/score', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
+    body: JSON.stringify({ gameId, value: score })
+  });
+
+  const data = await res.json();
+  console.log("Respuesta del servidor:", data);
+}
+
+async function getTopScores(gameId, order = 'desc') {
+  const res = await fetch(`http://localhost:3000/scores/${gameId}?order=${order}`, {
+    credentials: 'include'
+  });
+  return res.ok ? await res.json() : [];
+}
+
+async function renderArcadeTop5(containerId, gameId, order = 'desc') {
+  const container = document.getElementById(containerId);
+  const scores = await getTopScores(gameId, order);
+
+  if (!scores.length) {
+    container.innerHTML = '<p style="color: white;">No hay puntuaciones aún.</p>';
+    return;
+  }
+
+  container.innerHTML = `
+    <h2 style="color: pink; text-align: center;">TOP 5</h2>
+    <table class="arcade-table">
+      <thead>
+        <tr>
+          <th>RANK</th>
+          <th>SCORE</th>
+          <th>NAME</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${scores.map((s, i) => `
+          <tr>
+            <td>${i + 1}${['ST', 'ND', 'RD', 'TH', 'TH'][i]}</td>
+            <td>${String(Math.floor(s.value)).padStart(6, '0')}</td>
+            <td>${s.username.toUpperCase()}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+  `;
+}
+
+
+
 window.addEventListener('DOMContentLoaded', cargarMenuUsuario);

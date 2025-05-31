@@ -46,11 +46,12 @@ function checkInput() {
 
   // Comparación exacta
   if (input === selectedPhrase) {
-    const timeTaken = (Date.now() - startTime) / 1000;
-    const wpm = (selectedPhrase.split(" ").length / timeTaken) * 60;
-    updateMaxWpm(wpm);
-    showResult(wpm.toFixed(2));
-  }
+  const timeTaken = (Date.now() - startTime) / 1000;
+  const wpm = (selectedPhrase.split(" ").length / timeTaken) * 60;
+  const score = Math.floor(wpm); // define primero
+  updateMaxWpm(wpm);
+  showResult(wpm.toFixed(2), score); // pasa el score como parámetro
+}
 }
 
 function updateMaxWpm(wpm) {
@@ -60,13 +61,18 @@ function updateMaxWpm(wpm) {
   }
 }
 
-function showResult(wpm) {
+
+function showResult(wpm, score) {
   document.getElementById("game").classList.add("hidden");
   document.getElementById("result").classList.remove("hidden");
 
   document.getElementById("wpmResult").innerHTML = `
     ¡Has escrito a <strong>${wpm}</strong> palabras por minuto!<br>
     <br>
-    Tu puntuación máxima es: <strong>${parseFloat(maxWpm).toFixed(2)}</strong> WPM
+   </strong>
   `;
+  
+  saveScore('typerazing', score).then(() => {
+  renderArcadeTop5('topScores', 'typerazing', 'desc');
+});
 }

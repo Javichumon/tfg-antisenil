@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <title>La Invasión de los Pollos</title>
-    <link rel="icon" href="img\Icono.png" type="image/png">
+    <link rel="icon" href="img/Icono.png" type="image/png">
 </head>
 <body>
     <div id="game-container">
@@ -13,9 +14,15 @@
         <div id="life">Vidas: 3</div>
         <div id="max-score">Máxima puntuación: 0</div>
     </div>
+
     <audio id="background-music" src="audio/ChocoboThemeSong.wav"></audio>
     <audio id="success-sound" src="audio/Defuse.wav"></audio>
     <audio id="failure-sound" src="audio/Boom.wav"></audio>
+
+    <script src="../../app.js"></script>
+    <script>
+      requireAuth();
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

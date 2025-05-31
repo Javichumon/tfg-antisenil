@@ -8,7 +8,15 @@
 </head>
 <body>
   <div class="login-container">
-    <h2>Registrarse</h2>
+    
+    <div class="image-container">
+      <div class="avatar">
+        <img id="polloImagen" src="" alt="Pollo aleatorio" />
+      </div>
+    </div>
+
+    <h2>Crear cuenta</h2>
+
     <form id="registerForm">
       <label for="username">Usuario:</label>
       <input type="text" id="username" name="username" required />
@@ -16,16 +24,33 @@
       <label for="password">Contraseña:</label>
       <input type="password" id="password" name="password" required />
 
-      <label for="confirmPassword">Confirmar Contraseña:</label>
+      <label for="confirmPassword">Repetir Contraseña:</label>
       <input type="password" id="confirmPassword" name="confirmPassword" required />
 
-      <button type="submit">Crear Cuenta</button>
+      <button type="submit">Registrarse</button>
     </form>
 
     <p>¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+    <div id="error" class="error"></div>
+  </div>
 
     <div id="error" style="color: red; margin-top: 1em;"></div>
   </div>
+
+     <script src="app.js"></script>
+
+     <script>
+    // Mostrar imagen aleatoria
+    const imagenes = [
+      'img/pollosRandom/pollo1.png',
+      'img/pollosRandom/pollo2.png',
+      'img/pollosRandom/pollo3.png',
+      'img/pollosRandom/pollo4.png',
+      'img/pollosRandom/pollo5.png',
+      'img/pollosRandom/pollo6.png'
+    ];
+    document.getElementById('polloImagen').src = imagenes[Math.floor(Math.random() * imagenes.length)];
+  </script>
 
   <script>
     const form = document.getElementById('registerForm');

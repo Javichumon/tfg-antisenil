@@ -5,8 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Typing Speed Game</title>
   <link rel="stylesheet" href="styles.css" />
+   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
+  <script src="../../app.js"></script>
+
+  <script>
+    requireAuth();
+  </script>
+
   <div id="menu">
     <h1>Escribe la frase lo más rápido posible</h1>
     <button onclick="startGame()">Empezar</button>
@@ -20,6 +27,7 @@
 
   <div id="result" class="hidden">
     <p id="wpmResult"></p>
+    <div id="topScores" class="ranking-box"></div>
     <button onclick="startGame()">Reintentar</button>
     <button onclick="location.href='../../GodIndex.html'">Volver al menú</button>
   </div>

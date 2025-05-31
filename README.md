@@ -5,6 +5,7 @@ Cosas necesarias:
 
 https://nodejs.org/es
 Node.js — Ejecuta JavaScript en cualquier parte
+Ejecutar para ejecutar el sevidor node y funcionen las cookies, y las llamadas a mysql: node server.js
 
 https://dev.mysql.com/downloads/file/?id=541637
 

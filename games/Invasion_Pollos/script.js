@@ -78,18 +78,26 @@ function showGameOverModal() {
     const modal = document.createElement('div');
     modal.id = 'start-screen';
     modal.className = 'screen';
+
     modal.innerHTML = `
         <h1>¡Has perdido!</h1>
-        <p>Los pollos han destruido la tierra</p>
-        <button id="retry" class="menu-button">Clica aquí para intentar salvar otra dimensión</button>
+        <p>Puntuación final: ${score}</p>
+        <div id="topScores" class="ranking-arcade"></div>
+        <button id="retry" class="menu-button">Intentar otra vez</button>
         <button id="menu-button" class="menu-button">Volver al menú</button>
     `;
+
     document.getElementById('game-container').appendChild(modal);
 
+    saveScore('pollos', score).then(() => {
+        renderArcadeTop5('topScores', 'pollos', 'desc');
+    });
+    
     modal.querySelector('#retry').addEventListener('click', () => {
         modal.remove();
         location.reload();
     });
+
     modal.querySelector('#menu-button').addEventListener('click', () => {
         window.location.href = '../../GodIndex.html';
     });

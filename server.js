@@ -84,3 +84,51 @@ app.post('/logout', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
+
+// Score
+app.post('/score', async (req, res) => {
+  const { gameId, value } = req.body;
+  const username = req.session.user?.username;
+
+  if (!username || !gameId || typeof value !== 'number') {
+    return res.status(400).json({ message: 'Datos inválidos o sesión no iniciada' });
+  }
+
+  try {
+    const [users] = await db.query('SELECT id FROM usuarios WHERE username = ?', [username]);
+    const userId = users[0]?.id;
+    if (!userId) return res.status(404).json({ message: 'Usuario no encontrado' });
+
+    await db.query(
+      'INSERT INTO scores (game_id, user_id, value) VALUES (?, ?, ?)',
+      [gameId, userId, value]
+    );
+
+    res.json({ message: 'Puntuación guardada' });
+  } catch (err) {
+    console.error('Error al guardar score:', err);
+    res.status(500).json({ message: 'Error interno', error: err.message });
+  }
+});
+
+// Para obtener el top 5:
+app.get('/scores/:gameId', async (req, res) => {
+  const { gameId } = req.params;
+  const order = req.query.order === 'asc' ? 'ASC' : 'DESC';
+
+  try {
+    const [rows] = await db.query(
+      `SELECT u.username, s.value, s.date
+       FROM scores s
+       JOIN usuarios u ON s.user_id = u.id
+       WHERE s.game_id = ?
+       ORDER BY s.value ${order}
+       LIMIT 5`,
+      [gameId]
+    );
+    res.json(rows);
+  } catch (err) {
+    console.error('Error al obtener top scores:', err);
+    res.status(500).json({ message: 'Error interno' });
+  }
+});
