@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registro</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="login-container">
+    <h2>Registrarse</h2>
+    <form id="registerForm">
+      <label for="username">Usuario:</label>
+      <input type="text" id="username" name="username" required />
+
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" name="password" required />
+
+      <label for="confirmPassword">Confirmar Contraseña:</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" required />
+
+      <button type="submit">Crear Cuenta</button>
+    </form>
+
+    <p>¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+
+    <div id="error" style="color: red; margin-top: 1em;"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById('registerForm');
+    const errorDiv = document.getElementById('error');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = form.username.value.trim();
+      const password = form.password.value;
+      const confirmPassword = form.confirmPassword.value;
+
+      if (password !== confirmPassword) {
+        errorDiv.textContent = 'Las contraseñas no coinciden';
+        return;
+      }
+
+      try {
+        const res = await fetch('http://localhost:3000/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password }),
+          credentials: 'include'
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          sessionStorage.setItem('user', JSON.stringify(data.user));
+          window.location.href = 'GodIndex.html'; // o index.html
+        } else {
+          errorDiv.textContent = data.message || 'Error al registrar usuario';
+        }
+      } catch (err) {
+        errorDiv.textContent = 'Error del servidor';
+        console.error('Error al registrar:', err);
+      }
+    });
+  </script>
+</body>
+</html>
