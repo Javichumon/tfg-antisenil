@@ -111,6 +111,4 @@ async function renderArcadeTop5(containerId, gameId, order = 'desc') {
   `;
 }
 
-
-
 window.addEventListener('DOMContentLoaded', cargarMenuUsuario);

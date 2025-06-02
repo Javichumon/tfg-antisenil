@@ -81,8 +81,13 @@ function comprobarFin() {
     } else {
       mejorSpan.textContent = mejor;
     }
+    
+    // Guardar score y mostrar ranking
+    saveScore('memoria', errores).then(() => {
+    renderArcadeTop5('topScores', 'memoria', 'asc');
+    });
   }
 }
 saveScore('memoria', errores); // o segundos, o tiempo, según juego
 
-renderArcadeTop5('topScores', 'memoria', 'asc'); // o 'desc'
+renderArcadeTop5('topScores', 'memoria', 'asc');

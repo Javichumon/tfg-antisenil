@@ -70,6 +70,11 @@ document.addEventListener("click", () => {
     showButtons();
     updateBestScore(reactionTime);
     gameEnded = true;
+
+     // Guardar score y mostrar top 5
+    saveScore('peekaboo', reactionTime).then(() => {
+    renderArcadeTop5('topScores', 'peekaboo', 'asc');
+    });
   } else {
     const timeSinceStart = now - gameStartTime;
     if (timeSinceStart >= 50) {

@@ -87,6 +87,11 @@ function endGame() {
 
     gameUI.classList.add('hidden');
     endMenu.classList.remove('hidden');
+
+    // Guardar score y mostrar top 5
+    saveScore('tracker', parseFloat(currentTime.toFixed(3))).then(() => {
+    renderArcadeTop5('topScores', 'tracker', 'desc');
+    });
 }
 
 function gameLoop() {
