@@ -15,7 +15,7 @@ async function requireAuth() {
   }
 }
 
-// Mostrar menú de usuario si existe en la página
+// Mostrar menú de usuario si existe
 async function cargarMenuUsuario() {
   const dropdown = document.getElementById('userDropdown');
   const button = document.getElementById('userMenuBtn');
