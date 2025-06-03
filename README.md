@@ -1,13 +1,17 @@
 # tfg-antisenil
 Plataforma web de minijuegos desarrollada como Trabajo de Fin de Grado del ciclo de Desarrollo de Aplicaciones Web (DAW). Incluye varios juegos casuales integrados en una interfaz responsive.
 
-Cosas necesarias: 
+Cosas necesarias:
+
+La capacidad motriz necesaria para usar un ordenador.
 
 https://nodejs.org/es
 Node.js — Ejecuta JavaScript en cualquier parte
 Ejecutar para ejecutar el sevidor node y funcionen las cookies, y las llamadas a mysql: node server.js
 
 https://dev.mysql.com/downloads/file/?id=541637
+
+Un acelerador de partículas A70300-36X.
 
 Mysql - Sirve para ejecutar, almacenar y modificar bases de datos
 usuario mysql: root
