@@ -112,4 +112,20 @@ async function renderArcadeTop5(containerId, gameId, order = 'desc') {
   `;
 }
 
+// Evaluar logros después de una partida
+async function evaluarLogrosParciales(tipo) {
+  try {
+    const res = await fetch('http://localhost:3000/check-session', {
+      credentials: 'include'
+    });
+    const data = await res.json();
+    const username = data.user.username;
+
+    await fetch(`http://localhost:5126/api/logros/evaluar/${username}?only=${tipo}`, {
+      method: 'POST'
+    });
+  } catch (err) {
+    console.error("No se pudo evaluar logros:", err);
+  }
+}
 window.addEventListener('DOMContentLoaded', cargarMenuUsuario);

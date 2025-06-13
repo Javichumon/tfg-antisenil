@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LogrosAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2d554b8c47cca5b38d056704b8abd99ba85847eb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0d6962c258a18e99ebe62261816c73d96f50c59d")]
 [assembly: System.Reflection.AssemblyProductAttribute("LogrosAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LogrosAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
