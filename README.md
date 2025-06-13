@@ -21,7 +21,8 @@ Antes de comenzar, asegúrate de tener instalados:
 ---
 ✅ GUÍA PASO A PASO PARA HACER FUNCIONAR EL PROYECTO TFG
 
-----------------------------------------------1️⃣ CREAR LA BASE DE DATOS Y LAS TABLAS EN MYSQL
+----------------------------------------------
+1️⃣ CREAR LA BASE DE DATOS Y LAS TABLAS EN MYSQL
 ----------------------------------------------
 Abre tu cliente MySQL (Workbench, consola, etc.) y ejecuta el archivo:
 
