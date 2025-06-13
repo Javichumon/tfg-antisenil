@@ -33,9 +33,10 @@ async function cargarMenuUsuario() {
 
     if (res.ok) {
       dropdown.innerHTML = `
-        <div style="padding: 10px;">👤 ${data.user.username}</div>
-        <a href="#" onclick="cerrarSesion()">Cerrar sesión</a>
-      `;
+      <div style="padding: 10px;">👤 ${data.user.username}</div>
+      <a href="logros.html">Logros</a>
+      <a href="#" onclick="cerrarSesion()">Cerrar sesión</a>
+    `;
     } else {
       dropdown.innerHTML = `
         <a href="login.html">Iniciar sesión</a>

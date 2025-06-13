@@ -81,13 +81,17 @@ function comprobarFin() {
     } else {
       mejorSpan.textContent = mejor;
     }
-    
+
     // Guardar score y mostrar ranking
     saveScore('memoria', errores).then(() => {
-    renderArcadeTop5('topScores', 'memoria', 'asc');
+      renderArcadeTop5('topScores', 'memoria', 'asc');
+      fetch('http://localhost:3000/check-session', { credentials: 'include' })
+        .then(r => r.json())
+        .then(data => {
+          fetch(`http://localhost:5000/api/logros/evaluar/${data.user.username}?only=mente`, { method: 'POST' });
+        });
     });
   }
 }
-saveScore('memoria', errores); // o segundos, o tiempo, según juego
 
 renderArcadeTop5('topScores', 'memoria', 'asc');

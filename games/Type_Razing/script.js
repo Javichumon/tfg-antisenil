@@ -46,12 +46,12 @@ function checkInput() {
 
   // Comparación exacta
   if (input === selectedPhrase) {
-  const timeTaken = (Date.now() - startTime) / 1000;
-  const wpm = (selectedPhrase.split(" ").length / timeTaken) * 60;
-  const score = Math.floor(wpm); // define primero
-  updateMaxWpm(wpm);
-  showResult(wpm.toFixed(2), score); // pasa el score como parámetro
-}
+    const timeTaken = (Date.now() - startTime) / 1000;
+    const wpm = (selectedPhrase.split(" ").length / timeTaken) * 60;
+    const score = Math.floor(wpm);
+    updateMaxWpm(wpm);
+    showResult(wpm.toFixed(2), score);
+  }
 }
 
 function updateMaxWpm(wpm) {
@@ -61,18 +61,26 @@ function updateMaxWpm(wpm) {
   }
 }
 
-
 function showResult(wpm, score) {
   document.getElementById("game").classList.add("hidden");
   document.getElementById("result").classList.remove("hidden");
 
   document.getElementById("wpmResult").innerHTML = `
-    ¡Has escrito a <strong>${wpm}</strong> palabras por minuto!<br>
-    <br>
-   </strong>
+    ¡Has escrito a <strong>${wpm}</strong> palabras por minuto!<br><br>
+    Tu puntuación se ha guardado correctamente.
   `;
-  
+
   saveScore('typerazing', score).then(() => {
-  renderArcadeTop5('topScores', 'typerazing', 'desc');
-});
+    renderArcadeTop5('topScores', 'typerazing', 'desc');
+
+    fetch('http://localhost:3000/check-session', { credentials: 'include' })
+      .then(r => r.json())
+      .then(data => {
+        fetch(`http://localhost:5126/api/logros/evaluar/${data.user.username}?only=teclado`, {
+          method: 'POST'
+        });
+      })
+      .then(() => console.log("Evaluación de logros solicitada"))
+      .catch(err => console.error("Error al evaluar logros:", err));
+  });
 }

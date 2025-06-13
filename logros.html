@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Logros desbloqueados</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <script src="app.js"></script>
+    <script>
+        requireAuth(); // Solo accesible logueado
+    </script>
+
+    <h1 style="text-align: center;">🎖️ Tus Logros</h1>
+    <div id="logrosContainer" style="max-width: 600px; margin: auto;"></div>
+
+    <script>
+        const TODOS_LOS_LOGROS = [
+            {
+                nombre: "Jugón",
+                descripcion: "Has jugado a todos los juegos disponibles."
+            },
+            {
+                nombre: "Reflejos de acero",
+                descripcion: "Has conseguido un tiempo de reacción inferior a 250 ms."
+            },
+            {
+                nombre: "Cazapollos",
+                descripcion: "Has alcanzado más de 30 puntos en el juego de pollos."
+            },
+            {
+                nombre: "Mente prodigiosa",
+                descripcion: "Has completado memoria con menos de 15 errores."
+            },
+            {
+                nombre: "Superviviente",
+                descripcion: "Has aguantado más de 20 segundos en tracker."
+            },
+            {
+                nombre: "Teclado en llamas",
+                descripcion: "Has escrito a más de 100 palabras por minuto."
+            },
+            {
+                nombre: "Impaciente",
+                descripcion: "Has hecho clic antes de tiempo en Peek-a-boo. ¡Demasiadas ganas!"
+            },
+            {
+                nombre: "Maestro definitivo",
+                descripcion: "Has conseguido todos los logros disponibles."
+            }
+
+        ];
+
+        async function cargarLogros() {
+            try {
+                const res = await fetch("http://localhost:3000/check-session", {
+                    credentials: "include"
+                });
+                const data = await res.json();
+                const username = data.user.username;
+
+                const resLogros = await fetch(`http://localhost:5126/api/logros/${username}`);
+                const desbloqueados = await resLogros.json();
+
+                const container = document.getElementById("logrosContainer");
+                container.innerHTML = TODOS_LOS_LOGROS.map(logro => {
+                    const desbloqueado = desbloqueados.find(l => l.nombre === logro.nombre);
+                    return `
+    <div class="logro-card ${desbloqueado ? 'desbloqueado' : ''}">
+      <h3>${logro.nombre}</h3>
+      <p>${logro.descripcion}</p>
+      <span class="fecha">${desbloqueado ? `Desbloqueado el ${new Date(desbloqueado.fecha).toLocaleDateString()}` : 'No desbloqueado aún'}</span>
+    </div>
+  `;
+                }).join("");
+
+            } catch (err) {
+                console.error("Error cargando logros:", err);
+            }
+        }
+
+        window.addEventListener("DOMContentLoaded", cargarLogros);
+    </script>
+</body>
+
+</html>

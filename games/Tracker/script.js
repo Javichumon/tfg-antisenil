@@ -90,8 +90,14 @@ function endGame() {
 
     // Guardar score y mostrar top 5
     saveScore('tracker', parseFloat(currentTime.toFixed(3))).then(() => {
-    renderArcadeTop5('topScores', 'tracker', 'desc');
+        renderArcadeTop5('topScores', 'tracker', 'desc');
+        fetch('http://localhost:3000/check-session', { credentials: 'include' })
+            .then(r => r.json())
+            .then(data => {
+                fetch(`http://localhost:5126/api/logros/evaluar/${data.user.username}?only=superviviente`, { method: 'POST' });
+            });
     });
+
 }
 
 function gameLoop() {

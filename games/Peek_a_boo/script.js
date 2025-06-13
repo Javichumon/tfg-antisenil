@@ -71,20 +71,38 @@ document.addEventListener("click", () => {
     updateBestScore(reactionTime);
     gameEnded = true;
 
-     // Guardar score y mostrar top 5
+    // Guardar score y mostrar top 5
     saveScore('peekaboo', reactionTime).then(() => {
-    renderArcadeTop5('topScores', 'peekaboo', 'asc');
+      renderArcadeTop5('topScores', 'peekaboo', 'asc');
+      fetch('http://localhost:3000/check-session', { credentials: 'include' })
+        .then(r => r.json())
+        .then(data => {
+          fetch(`http://localhost:5126/api/logros/evaluar/${data.user.username}?only=reflejos`, { method: 'POST' });
+        });
     });
+
   } else {
     const timeSinceStart = now - gameStartTime;
     if (timeSinceStart >= 50) {
       // Clic anticipado después de 0,05 segundos porque si no pasan cosas
       document.body.className = "tooSoon";
-      showMessage("¡Has hecho clic demasiado pronto!");
-      showButtons();
+
       gameEnded = true;
+
+      saveScore('peekaboo_fail', 0).then(() => {
+        showMessage("¡Has hecho clic demasiado pronto!");
+        showButtons();
+
+        fetch('http://localhost:3000/check-session', { credentials: 'include' })
+          .then(r => r.json())
+          .then(data => {
+            // Solo evaluar el logro "Impaciente"
+            fetch(`http://localhost:5126/api/logros/evaluar/${data.user.username}?only=impaciente`, {
+              method: 'POST'
+            });
+          });
+      });
     }
-    // Si es antes de 0,05 segundos, no hace nada
   }
 });
 

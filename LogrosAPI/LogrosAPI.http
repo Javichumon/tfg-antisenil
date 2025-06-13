@@ -1,0 +1,6 @@
+@LogrosAPI_HostAddress = http://localhost:5126
+
+GET {{LogrosAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

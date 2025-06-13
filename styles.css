@@ -180,3 +180,55 @@ h1 {
 .arcade-table {
   font-family: 'Press Start 2P', monospace;
 }
+
+#logrosContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.logro-card {
+  background-color: #1c1c1c;
+  color: #aaa;
+  border: 2px solid #444;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 15px 0;
+  box-shadow: 0 0 5px rgba(0, 255, 255, 0.1);
+  transition: 0.3s ease;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+}
+
+.logro-card h3 {
+  font-size: 12px;
+  color: #ff0099;
+  margin-bottom: 10px;
+}
+
+.logro-card p {
+  margin: 5px 0;
+  line-height: 1.4;
+}
+
+.logro-card .fecha {
+  display: block;
+  margin-top: 10px;
+  font-size: 8px;
+  color: #888;
+}
+
+.logro-card.desbloqueado {
+  border-color: #00ff88;
+  background-color: #111;
+  color: #fff;
+  box-shadow: 0 0 10px #00ff88, 0 0 5px #00ffcc;
+}
+
+.logro-card.desbloqueado .fecha {
+  color: #00ffaa;
+}
+

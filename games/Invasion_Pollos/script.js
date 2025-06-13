@@ -91,8 +91,13 @@ function showGameOverModal() {
 
     saveScore('pollos', score).then(() => {
         renderArcadeTop5('topScores', 'pollos', 'desc');
+        fetch('http://localhost:3000/check-session', { credentials: 'include' })
+            .then(r => r.json())
+            .then(data => {
+                fetch(`http://localhost:5126/api/logros/evaluar/${data.user.username}?only=cazapollos`, { method: 'POST' });
+            });
     });
-    
+
     modal.querySelector('#retry').addEventListener('click', () => {
         modal.remove();
         location.reload();
